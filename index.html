@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why human management skills are the secret to better AI | Michael Borck</title>
+<meta name="description" content="Poster companion. The prompting techniques that work best are old human strategies for managing complexity. The model supplies the form; you supply the substance.">
+<!-- Paper is under double-blind review: keep this page out of search indexes until the decision. Remove after. -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Why human management skills are the secret to better AI">
+<meta property="og:description" content="The model supplies the form. You supply the substance. Poster companion by Michael Borck, Curtin University.">
+<meta name="theme-color" content="#0d2744">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230d2744'/%3E%3Ccircle cx='8' cy='8' r='4.2' fill='%23f2b33d'/%3E%3C/svg%3E">
+<style>
+@font-face{font-family:"Barlow";font-weight:400;font-display:swap;src:url(fonts/barlow-latin-400-normal.woff2) format("woff2");}
+@font-face{font-family:"Barlow";font-weight:400;font-style:italic;font-display:swap;src:url(fonts/barlow-latin-400-italic.woff2) format("woff2");}
+@font-face{font-family:"Barlow";font-weight:500;font-display:swap;src:url(fonts/barlow-latin-500-normal.woff2) format("woff2");}
+@font-face{font-family:"Barlow";font-weight:600;font-display:swap;src:url(fonts/barlow-latin-600-normal.woff2) format("woff2");}
+@font-face{font-family:"Barlow";font-weight:700;font-display:swap;src:url(fonts/barlow-latin-700-normal.woff2) format("woff2");}
+@font-face{font-family:"Barlow Condensed";font-weight:600;font-display:swap;src:url(fonts/barlow-condensed-latin-600-normal.woff2) format("woff2");}
+@font-face{font-family:"Barlow Condensed";font-weight:700;font-display:swap;src:url(fonts/barlow-condensed-latin-700-normal.woff2) format("woff2");}
+@font-face{font-family:"Barlow Condensed";font-weight:800;font-display:swap;src:url(fonts/barlow-condensed-latin-800-normal.woff2) format("woff2");}
+
+:root{
+  --navy:#0d2744; --navy2:#173b63; --blue:#2c6aa3; --sky:#8cc0ea; --ice:#e8f1f9;
+  --gold:#c5960c; --gold-dk:#8a6806; --amber:#f2b33d; --cream:#fdf4e1;
+  --ink:#14212f; --muted:#4a5a6b; --paper:#f2f5f8; --line:#d6dee7;
+  --teal:#23897c; --red:#c4503a;
+  --w:880px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:64px;}
+body{margin:0;font-family:"Barlow",system-ui,Arial,sans-serif;font-size:18px;line-height:1.55;color:var(--ink);background:#fff;
+  -webkit-text-size-adjust:100%;}
+a{color:var(--blue);text-underline-offset:.15em;}
+a:hover{color:var(--navy);}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 20px;}
+h1,h2,h3,h4{font-family:"Barlow Condensed","Arial Narrow",sans-serif;line-height:1;margin:0;}
+h1,h2,h3,.big{text-wrap:balance;}
+p{margin:0 0 1em;}
+sup{font-size:.62em;line-height:0;font-weight:700;}
+sup a{text-decoration:none;}
+.gold{color:var(--gold);} .amber{color:var(--amber);}
+.cond{font-family:"Barlow Condensed",sans-serif;}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:rgba(13,39,68,.96);backdrop-filter:blur(6px);}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-top:0;padding-bottom:0;}
+nav .wrap::-webkit-scrollbar{display:none;}
+nav a{flex:none;color:#cfe0f0;text-decoration:none;font-family:"Barlow Condensed";font-weight:700;font-size:16px;letter-spacing:.1em;
+  text-transform:uppercase;padding:13px 10px;}
+nav a:hover{color:var(--amber);}
+
+/* header */
+header{padding:28px 0 34px;}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.logo{width:210px;height:auto;display:block;margin-left:-4px;}
+.byline{font-size:15px;color:var(--muted);line-height:1.35;text-align:right;}
+.byline b{display:block;color:var(--ink);font-size:18px;}
+.kicker{margin:30px 0 8px;font-family:"Barlow Condensed";font-weight:700;font-size:17px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);
+  display:flex;align-items:center;gap:12px;}
+.kicker::after{content:"";flex:1;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--gold));}
+h1{font-weight:800;font-size:clamp(42px,8.4vw,76px);line-height:.93;color:var(--navy);letter-spacing:-.005em;}
+.hero{display:block;width:100%;max-width:520px;margin:24px auto 6px;}
+.companion{margin-top:18px;font-size:15px;color:var(--muted);}
+
+/* summary */
+.tldr{background:var(--cream);border-left:6px solid var(--gold);border-radius:6px;padding:20px 22px 6px;margin:0 0 8px;}
+.tldr .lab{margin-bottom:8px;}
+.tldr p{font-size:19px;}
+
+/* section scaffolding */
+section{padding:48px 0;}
+.lab{font-family:"Barlow Condensed";font-weight:700;font-size:16px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
+.lab .rq{letter-spacing:.06em;color:#fff;background:var(--navy);border-radius:4px;padding:1px 8px;margin-left:8px;white-space:nowrap;}
+.shead{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.num{font-family:"Barlow Condensed";font-weight:800;font-size:64px;line-height:.78;color:transparent;-webkit-text-stroke:2px var(--blue);flex:none;}
+h2{font-weight:800;font-size:clamp(32px,5.4vw,46px);color:var(--navy);}
+h3{font-weight:800;font-size:28px;color:var(--navy);margin:34px 0 10px;}
+.lead{font-size:21px;line-height:1.45;}
+.note{font-size:15px;color:var(--muted);}
+
+.dark{background:var(--navy);color:#fff;
+  background-image:linear-gradient(rgba(140,192,234,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(140,192,234,.07) 1px,transparent 1px),
+  radial-gradient(ellipse at 15% 20%,#1d4a78 0%,transparent 60%);background-size:36px 36px,36px 36px,100% 100%;}
+.dark h2{color:#fff;} .dark .lab{color:var(--sky);} .dark a{color:var(--sky);}
+.dark .note{color:#b9cde0;}
+.soft{background:linear-gradient(180deg,var(--paper),#e7edf3);}
+
+/* problem */
+.bignum{font-family:"Barlow Condensed";font-weight:800;font-size:clamp(52px,11vw,96px);line-height:.9;margin:6px 0 14px;}
+.hollow{color:transparent;-webkit-text-stroke:2px var(--sky);}
+.cites{display:grid;grid-template-columns:repeat(13,1fr);gap:5px;max-width:560px;margin:0 0 10px;}
+.cites i{aspect-ratio:20/13;border-radius:3px;border:1.5px dashed rgba(140,192,234,.8);background:rgba(140,192,234,.06);}
+.cites i.r{border:1.5px solid #fff;background:var(--amber);}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:14px;color:#b9cde0;margin-bottom:26px;}
+.legend span{display:flex;align-items:center;gap:8px;}
+.legend i{display:inline-block;width:20px;height:13px;border-radius:3px;}
+.legend .f{border:1.5px dashed var(--sky);} .legend .r{background:var(--amber);}
+.story{font-size:21px;line-height:1.45;}
+.story .hit{font-weight:700;font-size:24px;line-height:1.25;color:var(--amber);}
+.punch{background:rgba(242,179,61,.13);border-left:6px solid var(--amber);border-radius:6px;padding:16px 20px;margin:22px 0;font-size:18px;}
+.punch p:last-child{margin:0;}
+.punch b{color:var(--amber);}
+.also{border-left:3px dashed rgba(140,192,234,.5);padding-left:16px;margin-top:22px;color:#c9d9e8;font-size:16px;}
+.also ul{margin:6px 0 0;padding-left:18px;}
+.also li{margin:4px 0;}
+.also b{color:#fff;font-family:"Barlow Condensed";font-size:18px;letter-spacing:.06em;text-transform:uppercase;}
+
+/* RQs */
+.rqs{display:grid;gap:12px;margin-top:6px;}
+.q{display:flex;gap:12px;align-items:flex-start;font-size:18px;line-height:1.4;}
+.q .tag{flex:none;font-family:"Barlow Condensed";font-weight:800;font-size:17px;color:#fff;background:var(--navy);border-radius:4px;padding:1px 8px;margin-top:2px;min-width:74px;text-align:center;}
+.q .tag.m{background:var(--gold);}
+
+/* transfer map */
+table.map{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:16px;margin:10px 0 4px;}
+.map th{font-family:"Barlow Condensed";font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 10px 2px;}
+.map td{padding:9px 10px;vertical-align:top;line-height:1.3;}
+.map td.hs{background:var(--cream);border:1px solid var(--gold);border-right:0;border-radius:6px 0 0 6px;font-weight:600;color:var(--navy);}
+.map td.hs small{display:block;font-weight:500;font-size:13px;color:var(--gold-dk);letter-spacing:.04em;text-transform:uppercase;}
+.map td.arrow{width:26px;padding:9px 0;color:var(--blue);text-align:center;background:var(--ice);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);}
+.map td.llm{background:#1f5690;color:#fff;font-weight:600;}
+.map td.llm sup a{color:var(--sky);}
+.map td.us{background:#fff;border:1px solid var(--line);border-left:0;border-radius:0 6px 6px 0;color:var(--ink);}
+.pill{display:inline-flex;align-items:center;gap:5px;font-family:"Barlow Condensed";font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;
+  border-radius:99px;padding:1px 9px 1px 6px;margin-bottom:3px;white-space:nowrap;}
+.pill svg{width:13px;height:13px;}
+.pill.t{background:var(--amber);color:var(--navy);}
+.pill.g{background:var(--cream);color:var(--navy);border:1px solid var(--gold);}
+.pill.j{background:var(--navy);color:#fff;} .pill.j svg{color:var(--amber);}
+.map .us span.d{display:block;font-size:14.5px;color:var(--muted);}
+
+@media (max-width:680px){
+  table.map,table.map tbody,table.map tr,table.map td{display:block;width:100%;}
+  table.map thead{display:none;}
+  table.map tr{margin:0 0 14px;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .map td.hs,.map td.us{border:0;border-radius:0;}
+  .map td.arrow{display:none;}
+  .map td.llm::before{content:"LLM equivalent";display:block;font-family:"Barlow Condensed";font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);}
+  .map td.us::before{content:"You supply";display:block;font-family:"Barlow Condensed";font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+}
+
+/* mechanism */
+.tg{display:inline-block;font-family:"Barlow Condensed";font-weight:800;font-size:.9em;letter-spacing:.06em;text-transform:uppercase;padding:0 7px;border-radius:4px;line-height:1.3;}
+.tg.sim{color:var(--blue);background:var(--ice);border:1.5px dashed var(--blue);}
+.tg.def{color:var(--gold-dk);background:var(--cream);border:1.5px solid var(--gold);}
+.eq{display:grid;grid-template-columns:1fr auto 1.25fr auto 1fr;gap:12px;align-items:stretch;margin:24px 0;}
+.op{display:flex;align-items:center;justify-content:center;font-family:"Barlow Condensed";font-weight:800;font-size:54px;color:var(--navy);}
+.card{border-radius:10px;padding:18px 18px 16px;}
+.card h4{font-weight:800;font-size:34px;text-transform:uppercase;letter-spacing:.02em;line-height:.9;}
+.card .from{font-family:"Barlow Condensed";font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;margin:4px 0 10px;}
+.card p{font-size:16px;line-height:1.4;margin:0 0 .6em;}
+.card svg.art{display:block;width:92px;height:92px;margin:4px auto 10px;}
+.form{background:var(--navy);color:#fff;background-image:linear-gradient(rgba(140,192,234,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(140,192,234,.1) 1px,transparent 1px);background-size:20px 20px;}
+.form h4{color:transparent;-webkit-text-stroke:1.3px var(--sky);} .form .from{color:var(--sky);}
+.subst{background:var(--cream);border:2px solid var(--gold);}
+.subst h4{color:var(--gold);} .subst .from{color:var(--gold-dk);}
+.chip{display:flex;gap:10px;align-items:flex-start;background:#fff;border-radius:8px;padding:9px 11px;margin:0 0 8px;box-shadow:0 2px 0 rgba(197,150,12,.35);font-size:15px;line-height:1.35;}
+.chip svg{flex:none;width:34px;height:34px;border-radius:50%;background:var(--amber);padding:7px;color:var(--navy);}
+.chip b{display:block;font-family:"Barlow Condensed";font-weight:800;font-size:19px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);line-height:1.1;}
+.result{background:linear-gradient(160deg,var(--navy2),var(--navy) 60%);color:#fff;}
+.result h4{color:var(--amber);} .result .from{color:#f7d690;}
+@media (max-width:760px){
+  .eq{grid-template-columns:1fr;gap:4px;}
+  .op{font-size:40px;line-height:1;}
+}
+
+.bars{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:20px 0;}
+.bars .t{font-family:"Barlow Condensed";font-weight:700;font-size:22px;color:var(--navy);margin-bottom:6px;}
+.bar{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:15px;}
+.bar .k{width:130px;flex:none;color:var(--muted);}
+.bar .track{flex:1;}
+.bar .v{height:26px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-family:"Barlow Condensed";font-weight:800;font-size:19px;color:#fff;}
+.bar .v.a{background:repeating-linear-gradient(45deg,var(--blue) 0 8px,#3a7bb8 8px 16px);}
+.bar .v.b{background:linear-gradient(90deg,var(--blue),var(--gold));}
+
+.quote{background:var(--navy);color:#fff;border-radius:10px;padding:18px 70px 18px 20px;position:relative;font-size:19px;line-height:1.4;margin:20px 0;}
+.quote::before{content:"\201C";position:absolute;right:16px;top:-8px;font-size:96px;color:var(--amber);font-family:Georgia,serif;}
+.quote span{display:block;margin-top:8px;font-size:15px;color:#b9cde0;}
+.quote sup a{color:var(--sky);}
+
+/* worked example */
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0 8px;}
+@media (max-width:760px){.ex{grid-template-columns:1fr;}}
+.prompt{border-radius:10px;padding:16px 18px;font-size:16px;line-height:1.45;}
+.prompt .k{font-family:"Barlow Condensed";font-weight:800;font-size:15px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;display:block;}
+.prompt blockquote{margin:0 0 10px;padding:10px 12px;border-radius:6px;background:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.5;}
+.prompt.weak{background:var(--ice);border:1.5px dashed var(--blue);} .prompt.weak .k{color:var(--blue);}
+.prompt.strong{background:var(--cream);border:2px solid var(--gold);} .prompt.strong .k{color:var(--gold-dk);}
+.prompt .pill{margin:6px 0 4px;}
+.prompt p{margin:0 0 .5em;}
+.outside{margin-top:10px;background:var(--navy);color:#fff;border-radius:6px;padding:10px 12px;font-size:15px;}
+.outside b{color:var(--amber);}
+
+/* boundaries */
+.grad{height:14px;border-radius:7px;background:linear-gradient(90deg,var(--teal),#e3b341 45%,#e0843a 75%,var(--red));margin:10px 0 4px;}
+.gradlab{display:flex;justify-content:space-between;font-family:"Barlow Condensed";font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);gap:10px;}
+.gradlab span:nth-child(1){color:var(--teal);} .gradlab span:nth-child(3){color:var(--red);text-align:right;}
+.bcards{display:grid;gap:16px;margin-top:22px;}
+.bcard{background:var(--paper);border-radius:10px;border-top:7px solid;padding:16px 20px 8px;}
+.bcard.v{border-color:#e3b341;} .bcard.e{border-color:#e0843a;} .bcard.h{border-color:var(--red);}
+.bcard .k{font-family:"Barlow Condensed";font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.bcard h4{font-weight:800;font-size:28px;color:var(--navy);margin:2px 0 10px;}
+.bcard p{font-size:17px;}
+.bcard .aside{font-size:15px;color:var(--muted);border-left:3px solid var(--line);padding-left:12px;}
+
+/* so what */
+.big{font-family:"Barlow Condensed";font-weight:800;font-size:clamp(34px,6vw,50px);line-height:1;margin:0 0 26px;}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+@media (max-width:760px){.cols{grid-template-columns:1fr;}}
+.col h4{font-weight:700;font-size:20px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);border-bottom:2px solid rgba(242,179,61,.5);padding-bottom:5px;margin-bottom:10px;}
+.col p{font-size:16px;color:#e3ecf5;}
+.col p b{color:#fff;}
+.decide{margin-top:26px;background:rgba(255,255,255,.06);border:1px solid rgba(140,192,234,.3);border-radius:10px;padding:18px 20px 6px;font-size:16.5px;color:#e3ecf5;}
+.decide h4{font-size:22px;color:#fff;margin-bottom:8px;}
+
+/* checklist */
+ol.check{list-style:none;counter-reset:c;padding:0;margin:18px 0 0;}
+ol.check li{counter-increment:c;position:relative;padding:0 0 16px 56px;min-height:44px;}
+ol.check li::before{content:counter(c);position:absolute;left:0;top:-2px;width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--amber);
+  font-family:"Barlow Condensed";font-weight:800;font-size:24px;display:flex;align-items:center;justify-content:center;}
+ol.check b{display:block;font-size:19px;color:var(--navy);}
+
+/* ask + paper */
+.ask{border:3px dashed var(--gold);border-radius:12px;padding:20px 22px;margin:8px 0 24px;}
+.ask small{display:block;font-weight:700;font-size:14px;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;}
+.ask .qq{font-family:"Barlow Condensed";font-weight:700;font-size:32px;line-height:1.05;color:var(--navy);margin:4px 0 14px;}
+.btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;font-family:"Barlow Condensed";font-weight:700;font-size:19px;letter-spacing:.06em;
+  text-transform:uppercase;border-radius:6px;padding:9px 16px;margin:0 8px 8px 0;}
+.btn:hover{background:var(--blue);color:#fff;}
+.btn.alt{background:#fff;color:var(--navy);border:2px solid var(--navy);}
+.btn.alt:hover{background:var(--ice);color:var(--navy);}
+.next{display:grid;gap:10px;margin:12px 0 18px;padding:0;list-style:none;}
+.next li{background:var(--paper);border-radius:8px;padding:12px 16px;font-size:16.5px;}
+.next b{color:var(--navy);}
+
+/* refs */
+ol.refs{padding-left:0;list-style:none;font-size:15.5px;line-height:1.45;}
+ol.refs li{display:grid;grid-template-columns:34px 1fr;margin:0 0 10px;scroll-margin-top:70px;}
+ol.refs li::before{content:attr(data-n);font-family:"Barlow Condensed";font-weight:800;font-size:18px;color:var(--blue);}
+ol.refs li:target{background:var(--cream);border-radius:4px;}
+ol.refs a{word-break:break-word;}
+
+footer{background:var(--paper);border-top:1px solid var(--line);padding:26px 0 40px;font-size:14.5px;color:var(--muted);}
+.aiuse{display:flex;gap:12px;align-items:flex-start;}
+.aiuse .tag{flex:none;font-family:"Barlow Condensed";font-weight:800;font-size:14px;letter-spacing:.12em;color:#fff;background:var(--blue);border-radius:4px;padding:1px 8px;margin-top:2px;}
+.aiuse b{color:var(--ink);}
+.copy{margin-top:18px;}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12z"/></symbol>
+    <symbol id="i-anchor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.4"/><path d="M12 7.4V21M7.5 11h9M4 13.5c0 4.2 3.6 7.5 8 7.5s8-3.3 8-7.5"/></symbol>
+    <symbol id="i-judge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.8"/><path d="M15.5 15.5L21 21"/><path d="M7.6 10.6l2.1 2.1 3.8-4"/></symbol>
+    <path id="gear" d="M0.00 -41.00 L4.39 -49.81 L12.43 -48.43 L13.65 -38.66 A41 41 0 0 1 24.10 -33.17 L32.83 -37.71 L38.53 -31.87 L33.76 -23.26 A41 41 0 0 1 38.99 -12.67 L48.73 -11.21 L49.90 -3.14 L40.99 1.03 A41 41 0 0 1 38.99 12.67 L46.01 19.57 L42.22 26.79 L32.55 24.93 A41 41 0 0 1 24.10 33.17 L25.72 42.88 L18.41 46.49 L11.69 39.30 A41 41 0 0 1 0.00 41.00 L-4.39 49.81 L-12.43 48.43 L-13.65 38.66 A41 41 0 0 1 -24.10 33.17 L-32.83 37.71 L-38.53 31.87 L-33.76 23.26 A41 41 0 0 1 -38.99 12.67 L-48.73 11.21 L-49.90 3.14 L-40.99 -1.03 A41 41 0 0 1 -38.99 -12.67 L-46.01 -19.57 L-42.22 -26.79 L-32.55 -24.93 A41 41 0 0 1 -24.10 -33.17 L-25.72 -42.88 L-18.41 -46.49 L-11.69 -39.30 A41 41 0 0 1 0.00 -41.00 Z"/>
+    <linearGradient id="gFormGear" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8cc0ea" stop-opacity=".22"/><stop offset="1" stop-color="#8cc0ea" stop-opacity=".04"/></linearGradient>
+    <linearGradient id="gSolidGear" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd27a"/><stop offset=".6" stop-color="#f2b33d"/><stop offset="1" stop-color="#c5960c"/></linearGradient>
+    <clipPath id="cL"><rect x="-60" y="-60" width="60" height="120"/></clipPath>
+    <clipPath id="cR"><rect x="0" y="-60" width="60" height="120"/></clipPath>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap">
+    <div class="top">
+      <img class="logo" src="curtin-logo.jpg" alt="Curtin University" width="900" height="159">
+      <div class="byline"><b>Michael Borck</b>School of Marketing and Management<br>Faculty of Business and Law, Curtin University</div>
+    </div>
+    <div class="kicker">Cognitive strategy transfer</div>
+    <h1>Why <span class="gold">human management skills</span> are the secret to better AI</h1>
+    <svg class="hero" viewBox="-97 -32 210 64" role="img" aria-label="A gear split down the middle: the dashed left half is the form, from the model; the solid gold right half is the substance, from you">
+      <g transform="scale(.6)">
+        <g clip-path="url(#cL)">
+          <use href="#gear" fill="#e8f1f9" stroke="#2c6aa3" stroke-width="1.8" stroke-dasharray="4.5 2.8"/>
+          <g stroke="#2c6aa3" stroke-width=".5" opacity=".5"><path d="M-42 -14H0M-42 0H0M-42 14H0M-14 -42V42M-28 -36V36"/></g>
+          <circle r="17" fill="#fff" stroke="#2c6aa3" stroke-width="1.6" stroke-dasharray="3 2"/>
+        </g>
+        <g clip-path="url(#cR)">
+          <use href="#gear" fill="url(#gSolidGear)" stroke="#c5960c" stroke-width="1"/>
+          <circle r="17" fill="#0d2744"/>
+        </g>
+        <path d="M0 -54V54" stroke="#0d2744" stroke-width="1" stroke-dasharray="2 2"/>
+      </g>
+      <g font-family="Barlow Condensed" font-weight="800" text-anchor="end">
+        <text x="-37" y="0" font-size="16" fill="none" stroke="#2c6aa3" stroke-width=".55" letter-spacing=".5">FORM</text>
+        <text x="-37" y="9" font-size="5.8" font-weight="700" fill="#2c6aa3" letter-spacing=".8">FROM THE MODEL</text>
+      </g>
+      <g font-family="Barlow Condensed" font-weight="800">
+        <text x="37" y="0" font-size="16" fill="#c5960c" letter-spacing=".5">SUBSTANCE</text>
+        <text x="37" y="9" font-size="5.8" font-weight="700" fill="#9a7408" letter-spacing=".8">FROM YOU</text>
+      </g>
+    </svg>
+    <div class="tldr">
+      <div class="lab">The short version</div>
+      <p>The prompting techniques that work best are old human strategies. Show your working. Write a clear brief. Break the job into steps. Check the result against a standard.</p>
+      <p>A language model has read about all of them, so it can follow their <b>form</b>. It can't supply their <b>substance</b>. You bring the goal, the context and, above all, a check from outside the model. That is why people who already manage complex work well tend to get the most out of AI.</p>
+    </div>
+    <p class="companion">This page goes with my research poster. It adds a worked example, a checklist you can use tomorrow, and linked references. Superscript numbers match the poster.</p>
+  </div>
+</header>
+
+<nav aria-label="Sections"><div class="wrap">
+  <a href="#problem">Problem</a><a href="#pattern">Pattern</a><a href="#mechanism">Mechanism</a><a href="#example">Example</a><a href="#boundaries">Boundaries</a><a href="#sowhat">So what</a><a href="#try">Try it</a><a href="#ask">Ask me</a><a href="#refs">References</a>
+</div></nav>
+
+<!-- PROBLEM -->
+<section class="dark" id="problem">
+  <div class="wrap">
+    <div class="lab">The problem</div>
+    <div class="bignum"><span class="hollow" style="white-space:nowrap">52 citations.</span> <span class="amber" style="white-space:nowrap">2 real.</span></div>
+    <div class="cites" id="cites" role="img" aria-label="52 citation cards: 50 dashed fakes and 2 solid real ones"></div>
+    <div class="legend"><span><i class="f"></i>The form of a citation, nothing behind it</span><span><i class="r"></i>A citation we could verify</span></div>
+    <div class="story">
+      <p>We asked a frontier model to draft a literature review. It gave us 52 confident citations. We could verify two.</p>
+      <p class="hit">Then we asked it to check its own references. It confirmed the fakes.</p>
+    </div>
+    <div class="punch">
+      <p>Every fake had the <b>form</b> of scholarship: authors, journal, volume, DOI. It lacked the <b>substance</b>, a real paper to point to. Asking the model again only produced more form. Only a check from <b>outside the model</b>, looking each reference up in a bibliographic database, told the real ones from the fakes.</p>
+    </div>
+    <div class="also">
+      <b>Not a one-off</b>
+      <ul>
+        <li>2023. A New York court sanctioned two lawyers whose brief cited six court decisions that didn't exist.<sup><a href="#r1">1</a></sup></li>
+        <li>2025. Deloitte part-refunded the Australian Government for an A$440,000 report with invented sources.<sup><a href="#r2">2</a></sup></li>
+        <li>2025. In a KPMG report, 40 of 45 reference titles turned out to be fabricated.<sup><a href="#r3">3</a></sup></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONS -->
+<section id="questions" style="padding-bottom:12px">
+  <div class="wrap">
+    <div class="lab">What the paper asks</div>
+    <div class="rqs">
+      <div class="q"><span class="tag">RQ1</span><span>Why do human strategies for managing complexity improve LLM performance?</span></div>
+      <div class="q"><span class="tag">RQ2</span><span>When does that transfer hold, and where does it break down?</span></div>
+      <div class="q"><span class="tag m">Approach</span><span>Conceptual theory-building, with no new data. The paper pulls together research on prompting, cognitive science, education and management, and anchors it in the information systems theory of affordances.<sup><a href="#r4">4</a>,<a href="#r5">5</a></sup></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 PATTERN -->
+<section id="pattern">
+  <div class="wrap">
+    <div class="shead"><span class="num">01</span><div><div class="lab">The pattern</div><h2>Old strategies, new tool</h2></div></div>
+    <p class="lead">The techniques that most reliably improve LLM output are strategies people already use to manage their own limits.</p>
+    <p>Read each row left to right. The model has seen the human strategy written down countless times in its training text, so it recognises the LLM version. The last column is the part it can't provide for itself.</p>
+    <table class="map">
+      <thead><tr><th>Human strategy</th><th></th><th>LLM equivalent</th><th>You supply</th></tr></thead>
+      <tbody>
+        <tr><td class="hs"><small>Exam technique</small>"Show your working"</td><td class="arrow">&rarr;</td><td class="llm">Chain-of-thought prompting<sup><a href="#r6">6</a>,<a href="#r7">7</a></sup></td>
+          <td class="us"><span class="pill t"><svg><use href="#i-bolt"/></svg>Triggering</span><span class="d">Asking for the intermediate steps.</span></td></tr>
+        <tr><td class="hs"><small>Management</small>Written brief with objectives</td><td class="arrow">&rarr;</td><td class="llm">Role and goal in the prompt<sup><a href="#r8">8</a></sup></td>
+          <td class="us"><span class="pill g"><svg><use href="#i-anchor"/></svg>Grounding</span><span class="d">What you actually want, stated up front.</span></td></tr>
+        <tr><td class="hs"><small>Management</small>Milestones and sub-tasks</td><td class="arrow">&rarr;</td><td class="llm">Decomposition, prompt chains</td>
+          <td class="us"><span class="pill g"><svg><use href="#i-anchor"/></svg>Grounding</span><span class="d">A big job cut into pieces you can check.</span></td></tr>
+        <tr><td class="hs"><small>Management</small>Review against criteria</td><td class="arrow">&rarr;</td><td class="llm">Output checked against a rubric</td>
+          <td class="us"><span class="pill j"><svg><use href="#i-judge"/></svg>Judgment</span><span class="d">A quality standard that sits outside the model.</span></td></tr>
+        <tr><td class="hs"><small>Software engineering</small>Requirements specification</td><td class="arrow">&rarr;</td><td class="llm">Spec-driven generation<sup><a href="#r9">9</a></sup></td>
+          <td class="us"><span class="pill g"><svg><use href="#i-anchor"/></svg>Grounding</span><span class="d">Intent written down before any work starts.</span></td></tr>
+        <tr><td class="hs"><small>Software engineering</small>Tests and code review</td><td class="arrow">&rarr;</td><td class="llm">Checks by an external oracle</td>
+          <td class="us"><span class="pill j"><svg><use href="#i-judge"/></svg>Judgment</span><span class="d">An independent check: a test, a source, a reviewer.</span></td></tr>
+        <tr><td class="hs"><small>Teaching</small>Worked examples</td><td class="arrow">&rarr;</td><td class="llm">Few-shot prompting</td>
+          <td class="us"><span class="pill g"><svg><use href="#i-anchor"/></svg>Grounding</span><span class="d">A demonstration of what good output looks like.</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">The resemblance on its own proves little. What matters is that each LLM technique hands the model, from outside, something a skilled person would carry in their head.</p>
+  </div>
+</section>
+
+<!-- 02 MECHANISM -->
+<section class="soft" id="mechanism">
+  <div class="wrap">
+    <div class="shead"><span class="num">02</span><div><div class="lab">The mechanism <span class="rq">Answers RQ1</span></div><h2>The model supplies the form. <span class="gold">You supply the substance.</span></h2></div></div>
+    <p class="lead">There are two usual explanations for why these strategies work, and they seem to pull against each other.</p>
+    <p><span class="tg sim">Similarity</span> says models are trained on human text, so the structures of careful human reasoning steer them toward careful-looking output. <span class="tg def">Deficit</span> says the strategies work because they cover for things models can't reliably do. The paper argues these are one mechanism seen from two ends.</p>
+
+    <div class="eq">
+      <div class="card form">
+        <h4>Form</h4><div class="from">from the model</div>
+        <svg class="art" viewBox="-54 -54 108 108" aria-hidden="true">
+          <use href="#gear" fill="url(#gFormGear)" stroke="#a9d2f3" stroke-width="2.2" stroke-dasharray="4.5 2.6"/>
+          <circle r="17" fill="none" stroke="#8cc0ea" stroke-width="1.4" stroke-dasharray="3 2"/>
+        </svg>
+        <p>Strategies are written all through the training text as worked examples, specs and checklists, so the model can follow one when asked.</p>
+        <p>It produces the <b>shape</b> of reasoning without the reliability that shape signals in a person.<sup><a href="#r10" style="color:#8cc0ea">10</a></sup></p>
+      </div>
+      <div class="op" aria-hidden="true">+</div>
+      <div class="card subst">
+        <h4>Substance</h4><div class="from">from you, outside the model</div>
+        <div class="chip"><svg><use href="#i-bolt"/></svg><div><b>Triggering</b>You invoke the strategy. This is the weakest of the three. Models are tuned to answer straight away, so part of it is just asking.</div></div>
+        <div class="chip"><svg><use href="#i-anchor"/></svg><div><b>Grounding</b>The goal, constraints and context of this particular task. They aren't in the model waiting to be triggered.</div></div>
+        <div class="chip"><svg><use href="#i-judge"/></svg><div><b>Judgment</b>A check against a standard outside the model. This is where most of the value is.</div></div>
+      </div>
+      <div class="op" aria-hidden="true">=</div>
+      <div class="card result">
+        <h4>Actualised</h4><div class="from">a strategy that works</div>
+        <svg class="art" viewBox="-54 -54 108 108" aria-hidden="true">
+          <use href="#gear" fill="url(#gSolidGear)" stroke="#fff" stroke-width="1.4"/>
+          <circle r="17" fill="#0d2744"/>
+          <path d="M-8 0l5.5 5.5 11-11.5" fill="none" stroke="#f2b33d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p>A student eventually internalises a strategy and stops needing the prompt. The model never does. You supply the substance again, every time.</p>
+      </div>
+    </div>
+
+    <div class="quote">A model can describe "check your work" fluently. It won't apply it unless someone imposes it from outside.
+      <span>In affordance terms, the model offers a possibility for action. Only the user can actualise it.<sup><a href="#r4">4</a>,<a href="#r5">5</a></sup></span></div>
+
+    <div class="bars">
+      <div class="t">Same frozen model, external structure added</div>
+      <div class="bar"><span class="k">Model alone</span><span class="track"><span class="v a" style="width:48.3%">48.3</span></span></div>
+      <div class="bar"><span class="k">+ outside structure</span><span class="track"><span class="v b" style="width:56.9%">56.9</span></span></div>
+      <p class="note" style="margin:8px 0 0">Cao et al. wrapped a current frontier model in external monitoring and orchestration. The weights didn't change. Pooled accuracy on hard reasoning, coding and visual benchmarks went from 48.3 to 56.9.<sup><a href="#r11">11</a></sup></p>
+    </div>
+  </div>
+</section>
+
+<!-- WORKED EXAMPLE -->
+<section id="example">
+  <div class="wrap">
+    <div class="lab">What it looks like in practice</div>
+    <h2>Same model, same task, different substance</h2>
+    <p class="lead" style="margin-top:14px">Say you need a one-page summary of this quarter's customer complaints for the leadership team.</p>
+    <div class="ex">
+      <div class="prompt weak">
+        <span class="k">Form only</span>
+        <blockquote>Summarise our customer complaints this quarter and recommend three actions. Think step by step.</blockquote>
+        <p>You'll get something fluent and well organised. It may invent trends, round numbers it never counted, and recommend things that sound like every other complaints report. "Think step by step" triggers the form of analysis. Nothing grounds it in your data or checks the result.</p>
+      </div>
+      <div class="prompt strong">
+        <span class="k">Form plus substance</span>
+        <span class="pill g"><svg><use href="#i-anchor"/></svg>Grounding</span>
+        <blockquote>Attached is the complaints export for July to September, 412 rows. The readers are the leadership team. They'll use this to decide where two extra support staff go next quarter. Use the categories in column D. Don't estimate anything that isn't in the file.</blockquote>
+        <span class="pill t"><svg><use href="#i-bolt"/></svg>Triggering</span>
+        <blockquote>Work in steps. Count by category. Compare with last quarter's counts on the second sheet. Then pick the three biggest changes and suggest one action for each.</blockquote>
+        <span class="pill j"><svg><use href="#i-judge"/></svg>Judgment</span>
+        <div class="outside">This part happens <b>outside the model</b>. Check the category counts with a pivot table. Ask the team lead who handles complaints whether the top three match what they see.</div>
+      </div>
+    </div>
+    <p class="note">Typing "are you sure?" isn't a check. The model runs it through the same process that made the error, which is exactly what happened with the 52 citations. For references, the outside check is looking each one up in the library catalogue or at doi.org.</p>
+  </div>
+</section>
+
+<!-- 03 BOUNDARIES -->
+<section class="soft" id="boundaries">
+  <div class="wrap">
+    <div class="shead"><span class="num">03</span><div><div class="lab">The boundaries <span class="rq">Answers RQ2</span></div><h2>Transfer holds as far as outside supply can reach</h2></div></div>
+    <p class="lead">The framework makes a testable claim. A strategy helps when you can supply the missing substance from outside the model. It helps less as that gets harder, and fails where nothing outside can supply it.</p>
+    <div class="grad" aria-hidden="true"></div>
+    <div class="gradlab"><span>Robust: supplied from outside</span><span>Weak: model checks itself</span><span>Fails: needs novelty</span></div>
+    <div class="bcards">
+      <div class="bcard v">
+        <div class="k">Verification boundary</div>
+        <h4>Outside checks beat self-checks</h4>
+        <p>A model checking its own work runs the check through the process that made the error.<sup><a href="#r10">10</a>,<a href="#r12">12</a></sup> A loop that critiques its own output reaches a wrong answer faster, and with more apparent authority. A loop that checks against something external, such as a test suite, a source or a reviewer, keeps its strength. The loop changes who pulls the trigger. It doesn't change where the standard lives.</p>
+        <p class="aside">One scope note. Models that are specifically trained to verify can move part of the check inside the model. The framework expects that kind of shift as models improve. It doesn't make "are you sure?" a check.</p>
+      </div>
+      <div class="bcard e">
+        <div class="k">Expertise condition</div>
+        <h4>Experts gain most where checks need know-how</h4>
+        <p>Experts don't win by knowing AI tricks. They bring more of the substance, above all the judgment to catch a convincing wrong answer.<sup><a href="#r13">13</a></sup> So the prediction is specific. The expert advantage should be largest where checking needs domain knowledge, and smallest where a cheap outside check exists. Give a novice a test suite or an answer key and the gap narrows.</p>
+      </div>
+      <div class="bcard h">
+        <div class="k">Hard outer limit</div>
+        <h4>No prompt manufactures novelty</h4>
+        <p>Models interpolate within their training data and extrapolate past it unreliably.<sup><a href="#r14">14</a></sup> If that holds, genuinely new ideas stay out of reach whatever you put in the prompt.</p>
+        <p class="aside">This is the most contested claim in the framework. The paper treats it as a working assumption, not a settled result.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SO WHAT -->
+<section class="dark" id="sowhat">
+  <div class="wrap">
+    <p class="big">The skills that make AI work are <span class="amber">already in your workforce.</span></p>
+    <div class="cols">
+      <div class="col"><h4>IS theory</h4><p>Explains why prompting works <b>without claiming the machine thinks</b>. Effective AI use is affordance actualisation: the user turns what the tool offers into a result.</p></div>
+      <div class="col"><h4>Organisations</h4><p>Briefing, decomposing, specifying and reviewing already exist in your people, though rarely labelled as AI skills. <b>Pair AI with domain experts</b> rather than expecting it to replace them.</p></div>
+      <div class="col"><h4>AI literacy</h4><p>Teach prompting as applied management, not a list of incantations. Above all, teach <b>external verification</b>, and treat the model's confidence as telling you nothing.</p></div>
+    </div>
+    <div class="decide">
+      <h4>A decision the framework changes</h4>
+      <p>A firm adopting an AI coding assistant can fund prompt-engineering training for its developers, or an automated test suite and review workflow around the assistant's output. Most fund the training. The framework predicts the test suite wins, because it is a cheap outside check, and that the gap is largest for junior developers, who can least verify the output themselves.</p>
+      <p>For open-ended analytical work, where no such check exists, it predicts the opposite: expert judgment keeps the advantage. Both halves can be tested.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRY IT -->
+<section id="try">
+  <div class="wrap">
+    <div class="lab">Try it tomorrow</div>
+    <h2>Manage the model like a capable new colleague</h2>
+    <ol class="check">
+      <li><b>Write the brief you'd give a new starter.</b>The goal, who it's for, the constraints, and what "done" looks like.</li>
+      <li><b>Give it the material.</b>Paste in the data, the policy or the sources. Don't ask it to recall them.</li>
+      <li><b>Break the job into steps you can check one at a time.</b>A long single request hides where it went wrong.</li>
+      <li><b>Decide how you'll check the result before you read it.</b>Once a fluent answer is in front of you, it's easy to find it convincing.</li>
+      <li><b>Check against something outside the model.</b>A source, a calculation, a test, a colleague. "Are you sure?" doesn't count.</li>
+      <li><b>If you can't check it, don't rely on it.</b>Bring in someone who can check it, or use the model for a part you can check.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ASK + PAPER -->
+<section class="soft" id="ask">
+  <div class="wrap">
+    <div class="ask">
+      <small>Ask me</small>
+      <div class="qq">Which of your existing skills is already an AI skill?</div>
+      <p>I'm collecting answers from people in every discipline. Tell me yours in a line or two.</p>
+      <a class="btn" href="mailto:michael.borck@curtin.edu.au?subject=CST%20poster%3A%20my%20existing%20AI%20skill">Email your answer</a>
+    </div>
+
+    <div class="lab">The paper</div>
+    <h3 style="margin-top:6px">Full paper under review</h3>
+    <p>The conceptual paper behind this poster is under double-blind peer review, so I'm not posting it here yet. Email me for a copy.</p>
+    <a class="btn alt" href="mailto:michael.borck@curtin.edu.au?subject=CST%20paper%3A%20copy%20request">Request a copy</a>
+
+    <h3>What comes next</h3>
+    <p>The framework makes predictions. These studies test them:</p>
+    <ul class="next">
+      <li><b>Experiment.</b> Vary the strategy and the model's capability. Compare self-checks with outside checks, and see whether the gap widens for weaker models.</li>
+      <li><b>Design.</b> Build and evaluate a professional-development programme that starts from the skills staff already have, instead of teaching AI as something new.</li>
+      <li><b>Teaching.</b> Compare students taught prompting as applied management with students taught conventional prompt engineering, on tasks neither group has seen.</li>
+    </ul>
+    <p>If you'd like to collaborate, or have a unit or team that could take part, get in touch at <a href="mailto:michael.borck@curtin.edu.au">michael.borck@curtin.edu.au</a>.</p>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="refs">
+  <div class="wrap">
+    <div class="lab">References</div>
+    <h2>Sources</h2>
+    <p class="note" style="margin-top:10px">Numbers match the superscripts on the poster.</p>
+    <ol class="refs">
+      <li id="r1" data-n="1"><span>Mata v. Avianca, Inc., 678 F. Supp. 3d 443 (S.D.N.Y. 2023). Opinion and order on sanctions. <a href="https://law.justia.com/cases/federal/district-courts/new-york/nysdce/1:2022cv01461/575368/54/">Justia</a></span></li>
+      <li id="r2" data-n="2"><span>The Register. (2025). Deloitte to refund Australian government over AI errors in report. <a href="https://www.theregister.com/2025/10/06/deloitte_ai_report_australia/">theregister.com</a></span></li>
+      <li id="r3" data-n="3"><span>GPTZero. (2026). Chasing the hallucinations: KPMG's AI-powered attempt at redefining excellence. <a href="https://gptzero.me/news/investigations-kpmg/">gptzero.me</a></span></li>
+      <li id="r4" data-n="4"><span>Markus, M. L., &amp; Silver, M. S. (2008). A foundation for the study of IT effects: A new look at DeSanctis and Poole's concepts of structural features and spirit. <i>Journal of the Association for Information Systems, 9</i>(10/11), 609&#8211;632. <a href="https://doi.org/10.17705/1jais.00176">doi:10.17705/1jais.00176</a></span></li>
+      <li id="r5" data-n="5"><span>Strong, D. M., Volkoff, O., Johnson, S. A., Pelletier, L. R., et al. (2014). A theory of organization-EHR affordance actualization. <i>Journal of the Association for Information Systems, 15</i>(2). <a href="https://doi.org/10.17705/1jais.00353">doi:10.17705/1jais.00353</a></span></li>
+      <li id="r6" data-n="6"><span>Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., et al. (2022). Chain-of-thought prompting elicits reasoning in large language models. <i>NeurIPS</i>. <a href="https://arxiv.org/abs/2201.11903">arXiv:2201.11903</a></span></li>
+      <li id="r7" data-n="7"><span>Kojima, T., Gu, S. S., Reid, M., Matsuo, Y., &amp; Iwasawa, Y. (2022). Large language models are zero-shot reasoners. <i>NeurIPS</i>. <a href="https://arxiv.org/abs/2205.11916">arXiv:2205.11916</a></span></li>
+      <li id="r8" data-n="8"><span>Mollick, E. (2026). Management as AI superpower. <i>One Useful Thing</i>. <a href="https://www.oneusefulthing.org/p/management-as-ai-superpower">oneusefulthing.org</a></span></li>
+      <li id="r9" data-n="9"><span>Osmani, A. (2025). How to write a good spec for AI agents. <a href="https://addyosmani.com/blog/good-spec/">addyosmani.com</a></span></li>
+      <li id="r10" data-n="10"><span>Turpin, M., Michael, J., Perez, E., &amp; Bowman, S. R. (2023). Language models don't always say what they think: Unfaithful explanations in chain-of-thought prompting. <i>NeurIPS</i>. <a href="https://arxiv.org/abs/2305.04388">arXiv:2305.04388</a></span></li>
+      <li id="r11" data-n="11"><span>Cao, Q., Wang, Y., Qin, P., Zhang, S., &amp; Xie, P. (2026). LLMs know when they know, but do not act on it: A metacognitive harness for test-time scaling. <a href="https://arxiv.org/abs/2605.14186">arXiv:2605.14186</a></span></li>
+      <li id="r12" data-n="12"><span>Huang, J., Chen, X., Mishra, S., Zheng, H. S., Yu, A. W., et al. (2024). Large language models cannot self-correct reasoning yet. <i>ICLR</i>. <a href="https://arxiv.org/abs/2310.01798">arXiv:2310.01798</a></span></li>
+      <li id="r13" data-n="13"><span>Dell'Acqua, F., McFowland III, E., Mollick, E. R., Lifshitz-Assaf, H., et al. (2026). Navigating the jagged technological frontier: Field experimental evidence of the effects of AI on knowledge worker productivity and quality. <i>Organization Science, 37</i>(2). <a href="https://doi.org/10.1287/orsc.2025.21838">doi:10.1287/orsc.2025.21838</a></span></li>
+      <li id="r14" data-n="14"><span>Zhao, C., Tan, Z., Ma, P., Li, D., Jiang, B., et al. (2025). Is chain-of-thought reasoning of LLMs a mirage? A data distribution lens. <a href="https://arxiv.org/abs/2508.01191">arXiv:2508.01191</a></span></li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="aiuse"><span class="tag">AI USE</span><span>Generative AI (Claude, Anthropic; Google Gemini) helped draft the text and graphics of the poster and this page, working from the author's manuscript. The research, framework and arguments are the author's own. <b>The author reviewed, verified and edited all content and takes full responsibility for it.</b></span></div>
+    <p class="copy">&copy; 2026 Michael Borck, Curtin University &middot; <a href="mailto:michael.borck@curtin.edu.au">michael.borck@curtin.edu.au</a></p>
+  </div>
+</footer>
+
+<script>
+/* 52 citation cards, two real (same positions as the poster). */
+(function(){var c=document.getElementById('cites'),real={9:1,34:1},h='';
+  for(var i=0;i<52;i++)h+='<i'+(real[i]?' class="r"':'')+'></i>';c.innerHTML=h;})();
+</script>
+</body>
+</html>
